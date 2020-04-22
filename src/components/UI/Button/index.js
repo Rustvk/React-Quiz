@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './style.module.scss'
+import classes from './style.module.scss';
 
 const Button = props => {
 	const cls = [
