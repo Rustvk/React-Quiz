@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classes from './style.module.scss';
 import MenuToggle from '../../components/Navigation/MenuToggle';
 import Drawer from '../../components/Navigation/Drawer';
+import {connect} from 'react-redux';
 
 class Index extends Component {
 	state = {
@@ -18,7 +19,7 @@ class Index extends Component {
 		this.setState({
 			menu: false
 		})
-	}
+	};
 
 	render() {
 		return (
@@ -26,6 +27,7 @@ class Index extends Component {
 				<Drawer
 					isOpen={this.state.menu}
 					onClose={this.menuCloseHandler}
+					isAuthenticated={this.props.isAuthenticated}
 				/>
 				<MenuToggle
 					isOpen={this.state.menu}
@@ -39,4 +41,10 @@ class Index extends Component {
 	}
 }
 
-export default Index;
+function mapStateToProps(state) {
+	return {
+		isAuthenticated: !!state.auth.token
+	}
+}
+
+export default connect(mapStateToProps)(Index);
